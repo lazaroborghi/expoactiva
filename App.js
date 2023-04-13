@@ -3,7 +3,7 @@ import { Button, Pressable, StyleSheet, Text, View, Alert } from 'react-native';
 import { useState } from 'react';
 
 const buttonMessage = () => {
-  return (Alert.alert('Hola mundo'))
+  return (Alert.alert('Hola'))
 }
 
 export default function App() {
