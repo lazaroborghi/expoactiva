@@ -1,21 +1,44 @@
 import { StatusBar } from 'expo-status-bar';
-import { Button, Pressable, StyleSheet, Text, View, Alert } from 'react-native';
-import { useState } from 'react';
+import { StyleSheet, Text, View, Image} from 'react-native';
+import { useEffect, useState } from 'react';
 
-const buttonMessage = () => {
-  return (Alert.alert('Hola'))
-}
+const CAT_RANDOM_FACT_ENDPOINT = `https://catfact.ninja/fact`
 
 export default function App() {
-  const [count, setCount] = useState(0)
+  const [fact, setFact] = useState()
+  const [imageUrl,setImageUrl] = useState()
+
+  useEffect(() => {
+    fetch(CAT_RANDOM_FACT_ENDPOINT)
+      .then(res => res.json())
+      .then(data => {
+        const { fact } = data
+        setFact(fact)
+      })
+  },[])
+
+  useEffect(() => {
+    if (!fact) return
+
+    const firstWord = fact.split(' ',1).join(' ')
+    console.log(firstWord)
+
+    fetch(`https://cataas.com/cat/says/${firstWord}?size=50&color=red&json=true`)
+      .then(res => res.json())
+      .then(response => {
+        const { url } = response
+        setImageUrl(`https://cataas.com${url}`)
+      })
+  },[fact])
+
+  console.log(imageUrl)
 
   return (
     <View style={styles.container}>
-      <Button style={styles.button} title='Hola' onPress={buttonMessage}/>
-      <View style={styles.bottomNavigationBar}>
-        <Button style={styles.button} title='1' onPress={buttonMessage}/>
-        <Button style={styles.button} title='2' onPress={buttonMessage}/>
-        <Button style={styles.button} title='3' onPress={buttonMessage}/>
+      <View style={styles.factContainer}>
+        <Text style={styles.midText}>Cat random fact</Text>
+        {fact && <Text style={styles.smallText}>{fact}</Text>}
+        {imageUrl && <Image alt='Imagen random de gato obtenida de cataas.com' style={styles.image} source={{uri:`${imageUrl}`}} />}
       </View>
       <StatusBar style="auto" />
     </View>
@@ -25,19 +48,30 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: 'column',
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    gap: 10
   },
-  text: {
-    fontSize: 20
-  },
-  button: {
-  },
-  bottomNavigationBar: {
+  factContainer: {
     flex: 1,
-    flexDirection: 'row',
-    alignItems: 'flex-end',
-    justifyContent: 'center'
+    flexDirection: 'column',
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 30,
+    width: 250
+  },
+  midText: {
+    fontSize: 30,
+    fontWeight: 'bold'
+  },
+  smallText: {
+    fontSize: 16
+  },
+  image: {
+    width: 325,
+    height: 325
   }
 });
