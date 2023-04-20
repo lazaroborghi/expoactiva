@@ -1,48 +1,8 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image} from 'react-native';
-import { useEffect, useState } from 'react';
+import { StyleSheet } from 'react-native'
+import Map from './components/map/Map.js'
 
-const CAT_RANDOM_FACT_ENDPOINT = `https://catfact.ninja/fact`
-
-export default function App() {
-  const [fact, setFact] = useState()
-  const [imageUrl,setImageUrl] = useState()
-
-  useEffect(() => {
-    fetch(CAT_RANDOM_FACT_ENDPOINT)
-      .then(res => res.json())
-      .then(data => {
-        const { fact } = data
-        setFact(fact)
-      })
-  },[])
-
-  useEffect(() => {
-    if (!fact) return
-
-    const firstWord = fact.split(' ',1).join(' ')
-    console.log(firstWord)
-
-    fetch(`https://cataas.com/cat/says/${firstWord}?size=50&color=red&json=true`)
-      .then(res => res.json())
-      .then(response => {
-        const { url } = response
-        setImageUrl(`https://cataas.com${url}`)
-      })
-  },[fact])
-
-  console.log(imageUrl)
-
-  return (
-    <View style={styles.container}>
-      <View style={styles.factContainer}>
-        <Text style={styles.midText}>Cat random fact</Text>
-        {fact && <Text style={styles.smallText}>{fact}</Text>}
-        {imageUrl && <Image alt='Imagen random de gato obtenida de cataas.com' style={styles.image} source={{uri:`${imageUrl}`}} />}
-      </View>
-      <StatusBar style="auto" />
-    </View>
-  );
+export default function App () {
+  return <Map/>
 }
 
 const styles = StyleSheet.create({
@@ -74,4 +34,4 @@ const styles = StyleSheet.create({
     width: 325,
     height: 325
   }
-});
+})
