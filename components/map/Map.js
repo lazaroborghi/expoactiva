@@ -1,12 +1,18 @@
+import { StyleSheet } from 'react-native'
 import MapView from 'react-native-maps';
-import Polygons from './map-items/Polygons';
-import Ways from './map-items/Ways';
-import Markers from './map-items/Markers';
+import MapPolygons from './map-items/MapPolygons';
+import MapWays from './map-items/MapWays';
+import MapMarkers from './map-items/MapMarkers';
+import mapData from '../../assets/expoactiva.js'
+
+// Obtengo las features del mapa para pasar a los children
+const features = mapData.features
 
 export default function Map () {
+    // Componente Map, se renderiza el mapa con todos los elementos children
     return (
         <MapView
-        style={{ flex: 1 }}
+        style={styles.map}
         initialRegion={{
             latitude: -33.4467119,
             longitude: -57.8964425,
@@ -15,9 +21,17 @@ export default function Map () {
         }}
         provider="google"
         >
-            <Polygons/>
-            <Ways/>
-            <Markers/>
+            <MapPolygons features={features}/>
+            <MapWays features={features}/>
+            <MapMarkers features={features}/>
         </MapView>
     )
 }
+
+const styles = StyleSheet.create({
+    map: {
+      flex: 1,
+      width: '100%',
+      height: '100%',
+    }
+  })

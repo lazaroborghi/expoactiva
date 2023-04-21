@@ -66,6 +66,21 @@ export default
             {
                 "type": "Feature",
                 "properties": {
+                    "Name": "Hola",
+                    "description": "Desc"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -57.8983554,
+                        -33.4440000,
+                        0.0
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
                     "Name": "Estacionamiento",
                     "description": null
                 },

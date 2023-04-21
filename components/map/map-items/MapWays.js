@@ -1,8 +1,12 @@
-import mapData from '../../../assets/expoactiva.js'
 import { Polyline } from 'react-native-maps';
 
-export default function Ways () {
-    return mapData.features
+/*
+  Filtro todas las features en expoactiva.js que sean 'LineString' (Caminos).
+  Mapeo cada feature a un componente Polyline con sus coordenadas.
+  Renderizo cada Calle en el mapa
+*/
+export default function Ways ({ features }) {
+    return features
       .filter((feature) => feature.geometry.type === 'LineString')
       .map((feature, index) => {
         const coordinates = feature.geometry.coordinates.map((coord) => ({

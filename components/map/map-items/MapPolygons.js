@@ -1,8 +1,12 @@
-import mapData from '../../../assets/expoactiva.js'
 import { Polygon } from 'react-native-maps';
 
-export default function Polygons () {
-    return mapData.features
+/*
+  Filtro todas las features en expoactiva.js que sean 'Polygon' (Cuadrados).
+  Mapeo cada feature a un componente Polygon con sus coordenadas.
+  Renderizo cada Polygon en el mapa
+*/
+export default function Polygons ({ features }) {
+    return features
       .filter((feature) => feature.geometry.type === 'Polygon')
       .map((feature, index) => {
         const coordinates = feature.geometry.coordinates[0].map((coord) => ({
