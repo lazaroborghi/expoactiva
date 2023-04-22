@@ -1,4 +1,5 @@
 import { Marker } from 'react-native-maps';
+import { MaterialIcons } from '@expo/vector-icons';
 
 /*
   Filtro todas las features en expoactiva.js que sean 'Point' (Marcador).
@@ -13,12 +14,23 @@ export default function Markers ({ features }) {
           latitude: feature.geometry.coordinates[1],
           longitude: feature.geometry.coordinates[0],
         };
+
+        const isBathroom = feature.properties.Name === 'Baño';
+        const isFoodPark = feature.properties.Name === 'Comidas';
+
         return (
           <Marker key={index}
             coordinate={coordinates}
             title={feature.properties.Name}
             description={feature.properties.description} 
-          />
+          >
+            {isBathroom && (
+              <MaterialIcons name="wc" size={20} color="blue" />
+            )}
+            {isFoodPark && (
+              <MaterialIcons name="restaurant" size={20} color="orange" />
+            )}
+          </Marker>
         );
     });
 };

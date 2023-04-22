@@ -13,6 +13,6 @@ export default function Ways ({ features }) {
           latitude: coord[1],
           longitude: coord[0],
         }));
-        return <Polyline key={index} coordinates={coordinates} strokeWidth={2} strokeColor="rgba(0, 0, 255, 0.5)" />;
+        return <Polyline key={index} coordinates={coordinates} strokeWidth={3} strokeColor="grey" />;
       });
   };

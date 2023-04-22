@@ -14,7 +14,7 @@ export default function Polygons ({ features }) {
           longitude: coord[0],
         }));
         return (
-          <Polygon key={index} coordinates={coordinates} fillColor="rgba(100, 200, 200, 0.5)" strokeWidth={2} strokeColor="rgba(0, 0, 255, 0.5)" />
+          <Polygon key={index} coordinates={coordinates} fillColor="white" strokeWidth={2} strokeColor="grey" />
         );
       });
   };

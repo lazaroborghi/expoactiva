@@ -4,12 +4,10 @@ import Map from './components/map/Map.js'
 export default function App () {
 
   return (
-
     <View style={styles.container}>
       <Map/>
       <View style={{ height: 75 }} />
     </View>
-      
   )
   
 }

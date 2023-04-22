@@ -5,6 +5,7 @@ import MapWays from './map-items/MapWays';
 import MapMarkers from './map-items/MapMarkers';
 import mapData from '../../assets/expoactiva.js'
 
+
 // Obtengo las features del mapa para pasar a los children
 const features = mapData.features
 
@@ -19,6 +20,8 @@ export default function Map () {
             latitudeDelta: 0.002,
             longitudeDelta: 0.002,
         }}
+        minZoomLevel={8} // nivel mínimo de zoom
+        maxZoomLevel={18} // nivel máximo de zoom
         provider="google"
         >
             <MapPolygons features={features}/>

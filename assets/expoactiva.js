@@ -66,8 +66,8 @@ export default
             {
                 "type": "Feature",
                 "properties": {
-                    "Name": "Hola",
-                    "description": "Desc"
+                    "Name": "Comidas",
+                    "description": "Plaza de comidas"
                 },
                 "geometry": {
                     "type": "Point",
