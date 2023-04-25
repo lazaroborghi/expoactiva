@@ -24,6 +24,7 @@ export default function Markers ({ features }) {
             title={feature.properties.Name}
             description={feature.properties.description} 
           >
+            <MaterialIcons name="location-on" size={30} color="darkgreen" />
             {isBathroom && (
               <MaterialIcons name="wc" size={20} color="blue" />
             )}

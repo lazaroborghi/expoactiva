@@ -81,6 +81,21 @@ export default
             {
                 "type": "Feature",
                 "properties": {
+                    "Name": "UTEC",
+                    "description": "Stand UTEC"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -57.8961000,
+                        -33.4445000,
+                        0.0
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
                     "Name": "Estacionamiento",
                     "description": null
                 },

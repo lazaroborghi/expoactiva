@@ -1,13 +1,14 @@
 import { StyleSheet, View } from 'react-native'
-import Map from './components/map/Map.js'
+import Map from './components/map/Map.jsx'
 
 export default function App () {
 
   return (
     <View style={styles.container}>
       <Map/>
-      <View style={{ height: 75 }} />
-    </View>
+      <View style={{ height: 70 }} />
+    </View>    
+
   )
   
 }
