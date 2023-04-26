@@ -1,12 +1,36 @@
 import { Marker } from 'react-native-maps';
 import { MaterialIcons } from '@expo/vector-icons';
+import { View, Text } from 'react-native';
+
+function getMarkerIcon(markerName) {
+  switch (markerName) {
+    case 'Baño':
+      return <MaterialIcons name="wc" size={20} color="blue" />;
+    case 'Comidas':
+      return <MaterialIcons name="restaurant" size={20} color="orange" />;
+    default:
+      return null;
+  }
+}
+
+function calculateMarkerOpacity(zoomLevel) {
+  const minZoom = 8;
+  const maxZoom = 18;
+  const zoomRange = maxZoom - minZoom;
+  const currentZoomRange = zoomLevel - minZoom;
+
+  return currentZoomRange / zoomRange;
+}
 
 /*
   Filtro todas las features en expoactiva.js que sean 'Point' (Marcador).
   Mapeo cada feature a un componente Marker con sus coordenadas.
   Renderizo cada marcador en el mapa
 */
-export default function Markers ({ features }) {
+export default function Markers ({ features, zoomLevel }) {
+
+    const markerOpacity = calculateMarkerOpacity(zoomLevel);
+
     return features
       .filter((feature) => feature.geometry.type === 'Point')
       .map((feature, index) => {
@@ -15,22 +39,19 @@ export default function Markers ({ features }) {
           longitude: feature.geometry.coordinates[0],
         };
 
-        const isBathroom = feature.properties.Name === 'Baño';
-        const isFoodPark = feature.properties.Name === 'Comidas';
-
+        const markerName = feature.properties.Name;
+        const markerIcon = getMarkerIcon(markerName);
+      
         return (
           <Marker key={index}
             coordinate={coordinates}
-            title={feature.properties.Name}
-            description={feature.properties.description} 
+            title={markerName}
+            description={feature.properties.description}
           >
-            <MaterialIcons name="location-on" size={30} color="darkgreen" />
-            {isBathroom && (
-              <MaterialIcons name="wc" size={20} color="blue" />
-            )}
-            {isFoodPark && (
-              <MaterialIcons name="restaurant" size={20} color="orange" />
-            )}
+            <View style={{ alignItems: 'center', opacity: markerOpacity }}>
+              {markerIcon || <MaterialIcons name="location-on" size={30} color="darkgreen" />}
+              <Text>{markerName}</Text>
+            </View>
           </Marker>
         );
     });
