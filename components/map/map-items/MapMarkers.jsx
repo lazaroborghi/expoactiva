@@ -1,25 +1,25 @@
-import { Marker } from 'react-native-maps';
-import { MaterialIcons } from '@expo/vector-icons';
-import { View, Text } from 'react-native';
+import { Marker } from 'react-native-maps'
+import { MaterialIcons } from '@expo/vector-icons'
+import { View, Text } from 'react-native'
 
 function getMarkerIcon(markerName) {
   switch (markerName) {
     case 'Baño':
-      return <MaterialIcons name="wc" size={20} color="blue" />;
+      return <MaterialIcons name="wc" size={20} color="blue" />
     case 'Comidas':
-      return <MaterialIcons name="restaurant" size={20} color="orange" />;
+      return <MaterialIcons name="restaurant" size={20} color="orange" />
     default:
-      return null;
+      return null
   }
 }
 
 function calculateMarkerOpacity(zoomLevel) {
-  const minZoom = 8;
-  const maxZoom = 18;
-  const zoomRange = maxZoom - minZoom;
-  const currentZoomRange = zoomLevel - minZoom;
+  const minZoom = 8
+  const maxZoom = 18
+  const zoomRange = maxZoom - minZoom
+  const currentZoomRange = zoomLevel - minZoom
 
-  return currentZoomRange / zoomRange;
+  return currentZoomRange / zoomRange
 }
 
 /*
@@ -29,7 +29,7 @@ function calculateMarkerOpacity(zoomLevel) {
 */
 export default function Markers ({ features, zoomLevel }) {
 
-    const markerOpacity = calculateMarkerOpacity(zoomLevel);
+    const markerOpacity = calculateMarkerOpacity(zoomLevel)
 
     return features
       .filter((feature) => feature.geometry.type === 'Point')
@@ -40,7 +40,7 @@ export default function Markers ({ features, zoomLevel }) {
         };
 
         const markerName = feature.properties.Name;
-        const markerIcon = getMarkerIcon(markerName);
+        const markerIcon = getMarkerIcon(markerName)
       
         return (
           <Marker key={index}
@@ -53,6 +53,6 @@ export default function Markers ({ features, zoomLevel }) {
               <Text>{markerName}</Text>
             </View>
           </Marker>
-        );
-    });
-};
+        )
+    })
+}

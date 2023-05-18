@@ -1,4 +1,4 @@
-import { Polyline } from 'react-native-maps';
+import { Polyline } from 'react-native-maps'
 
 /*
   Filtro todas las features en expoactiva.js que sean 'LineString' (Caminos).
@@ -12,7 +12,7 @@ export default function Ways ({ features }) {
         const coordinates = feature.geometry.coordinates.map((coord) => ({
           latitude: coord[1],
           longitude: coord[0],
-        }));
-        return <Polyline key={index} coordinates={coordinates} strokeWidth={3} strokeColor="grey" />;
-      });
-  };
+        }))
+        return <Polyline key={index} coordinates={coordinates} strokeWidth={3} strokeColor="grey" />
+      })
+  }

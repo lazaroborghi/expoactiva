@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 import { StyleSheet } from 'react-native'
-import MapView from 'react-native-maps';
-import MapPolygons from './map-items/MapPolygons';
-import MapWays from './map-items/MapWays';
-import MapMarkers from './map-items/MapMarkers';
+import MapView from 'react-native-maps'
+import MapPolygons from './map-items/MapPolygons'
+import MapWays from './map-items/MapWays'
+import MapMarkers from './map-items/MapMarkers'
 import mapData from '../../assets/expoactiva.js'
 
 // Obtengo las features del mapa para pasar a los children
@@ -16,8 +16,8 @@ export default function Map () {
     const [zoomLevel, setZoomLevel] = useState(18);
 
     const handleRegionChange = (region) => {
-        const zoom = Math.round(Math.log(360 / region.longitudeDelta) / Math.LN2);
-        setZoomLevel(zoom);
+        const zoom = Math.round(Math.log(360 / region.longitudeDelta) / Math.LN2)
+        setZoomLevel(zoom)
     };
 
     return (

@@ -1,4 +1,4 @@
-import { Polygon } from 'react-native-maps';
+import { Polygon } from 'react-native-maps'
 
 /*
   Filtro todas las features en expoactiva.js que sean 'Polygon' (Cuadrados).
@@ -15,6 +15,6 @@ export default function Polygons ({ features }) {
         }));
         return (
           <Polygon key={index} coordinates={coordinates} fillColor="white" strokeWidth={2} strokeColor="grey" />
-        );
-      });
-  };
+        )
+      })
+  }
