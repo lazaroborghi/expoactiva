@@ -1,8 +1,8 @@
 export const expositores = {
     "expositores": [
         {
-          "nombre": "Expositor 1",
-          "descripcion": "Descripción del expositor 1",
+          "nombre": "Antel",
+          "descripcion": "Descripción de Antel",
           "ubicacion": {
             "latitud": 40.7128,
             "longitud": -74.0060
@@ -10,8 +10,8 @@ export const expositores = {
           "imagen": "../../assets/fair-stand.png"
         },
         {
-          "nombre": "Expositor 2",
-          "descripcion": "Descripción del expositor 2",
+          "nombre": "Toyota",
+          "descripcion": "Descripción de toyotasadasdasdasdasdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd asdasd asdasdas asd dasdasdas",
           "ubicacion": {
             "latitud": 34.0522,
             "longitud": -118.2437
@@ -19,8 +19,8 @@ export const expositores = {
           "imagen": "https://example.com/imagen_en_blanco.png"
         },
         {
-          "nombre": "Expositor 3",
-          "descripcion": "Descripción del expositor 3",
+          "nombre": "John Deere",
+          "descripcion": "Descripción de John Deere",
           "ubicacion": {
             "latitud": 51.5074,
             "longitud": -0.1278
@@ -69,6 +69,60 @@ export const expositores = {
           "ubicacion": {
             "latitud": -33.8688,
             "longitud": 151.2093
+          },
+          "imagen": "https://example.com/imagen_en_blanco.png"
+        },
+        {
+          "nombre": "Expositor 9",
+          "descripcion": "Descripción del expositor 9",
+          "ubicacion": {
+            "latitud": 40.4168,
+            "longitud": -3.7038
+          },
+          "imagen": "https://example.com/imagen_en_blanco.png"
+        },
+        {
+          "nombre": "Expositor 9",
+          "descripcion": "Descripción del expositor 9",
+          "ubicacion": {
+            "latitud": 40.4168,
+            "longitud": -3.7038
+          },
+          "imagen": "https://example.com/imagen_en_blanco.png"
+        },
+        {
+          "nombre": "Expositor 9",
+          "descripcion": "Descripción del expositor 9",
+          "ubicacion": {
+            "latitud": 40.4168,
+            "longitud": -3.7038
+          },
+          "imagen": "https://example.com/imagen_en_blanco.png"
+        },
+        {
+          "nombre": "Expositor 9",
+          "descripcion": "Descripción del expositor 9",
+          "ubicacion": {
+            "latitud": 40.4168,
+            "longitud": -3.7038
+          },
+          "imagen": "https://example.com/imagen_en_blanco.png"
+        },
+        {
+          "nombre": "Expositor 9",
+          "descripcion": "Descripción del expositor 9",
+          "ubicacion": {
+            "latitud": 40.4168,
+            "longitud": -3.7038
+          },
+          "imagen": "https://example.com/imagen_en_blanco.png"
+        },
+        {
+          "nombre": "Expositor 9",
+          "descripcion": "Descripción del expositor 9",
+          "ubicacion": {
+            "latitud": 40.4168,
+            "longitud": -3.7038
           },
           "imagen": "https://example.com/imagen_en_blanco.png"
         },

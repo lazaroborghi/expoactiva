@@ -1,64 +1,45 @@
-import React from "react";
-import { StyleSheet, View, Text } from "react-native";
-import { BottomSheetTextInput } from '@gorhom/bottom-sheet'
-import { MaterialIcons } from '@expo/vector-icons'; 
-import { expositores } from "../../assets/expositores";
-import { FlatList } from "react-native-gesture-handler";
-import fairStand from "../../assets/fair-stand.png";
-import ExhibitorItem from "./ExhibitorItem";
+import React, { useState } from 'react';
+import { StyleSheet, View, Keyboard } from 'react-native';
+import { BottomSheetFlatList } from '@gorhom/bottom-sheet';
+import { expositores } from '../../assets/expositores';
+import fairStand from '../../assets/fair-stand.png';
+import ExhibitorItem from './ExhibitorItem.jsx';
+import SearchBar from '../SearchBar.jsx';
 
 export default function Exhibitors() {
+  const [searchText, setSearchText] = useState('');
+  const handleScroll = () => {
+    Keyboard.dismiss();
+  };
 
-    return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Expositores</Text>
-            <View style={styles.search}>
-                <BottomSheetTextInput 
-                    style={styles.searchInput} 
-                    placeholder="Buscar">
-                </BottomSheetTextInput>
-            </View>
-            <FlatList
-                style={styles.list}
-                data={expositores.expositores}
-                keyExtractor={(item, index) => index.toString()}
-                renderItem={({ item }) => <ExhibitorItem item={item} fairStand={ fairStand} />}
-            />
-        </View>
-    )
+  const filteredExpositores = expositores.expositores.filter((exp) =>
+    exp.nombre.toLowerCase().includes(searchText.toLowerCase())
+  );
+
+  const renderItem = ({ item }) => <ExhibitorItem item={item} fairStand={fairStand} />;
+
+  return (
+    <View style={styles.container}>
+      <SearchBar placeholder="Buscar expositores" onSearchTextChange={(text) => setSearchText(text)} />
+      <BottomSheetFlatList
+        data={filteredExpositores}
+        keyExtractor={(item, index) => index.toString()}
+        renderItem={renderItem}
+        onScroll={handleScroll}
+        style={styles.bottomSheetFlatListContainer}
+      />
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      justifyContent: 'flex-start',
-      paddingVertical: 10
-    },
-    title: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        marginBottom: 15,
-        paddingHorizontal: 20,
-        alignSelf: 'center'
-    },
-    search: {
-        width: '100%',
-        height: 50,
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-        marginBottom: 15,
-        paddingHorizontal: 20
-    },
-    searchInput: {
-        marginVertical: 5,
-        backgroundColor: '#e8e8e8',
-        width: '100%',
-        borderRadius: 5,
-        paddingHorizontal: 10,
-        marginBottom: 15
-    },
-    list: {
-        flex: 1
-    }
-  })
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    justifyContent: 'flex-start',
+  },
+  bottomSheetFlatListContainer: {
+    flex: 1,
+    width: '100%',
+  },
+});

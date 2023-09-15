@@ -1,10 +1,14 @@
 import React from "react";
-import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
+import { StyleSheet, View, Text, Image } from "react-native";
 import { MaterialIcons } from '@expo/vector-icons'
+import { Pressable } from "react-native";
 
-export default function ExhibitorItem({item, fairStand}) {
+function ExhibitorItem({item, fairStand}) {
     return (
-    <TouchableOpacity style={styles.exhibitor}>
+    <Pressable style={({ pressed }) => [
+        styles.exhibitor,
+        pressed && styles.exhibitorPressed
+    ]}>
         <View style={styles.imageContainer}>
             <Image 
             source={fairStand}
@@ -16,11 +20,11 @@ export default function ExhibitorItem({item, fairStand}) {
             <Text>{item.descripcion}</Text>
         </View>
         <View style={styles.iconContainer}>
-            <TouchableOpacity>
-                <MaterialIcons name="location-on" size={35} color="darkgreen" />
-            </TouchableOpacity>
+            <Pressable>
+                <MaterialIcons name="near-me" size={35} color="seagreen" />
+            </Pressable>
         </View>
-    </TouchableOpacity>
+    </Pressable>
     )
 }
 
@@ -28,16 +32,25 @@ const styles = StyleSheet.create({
     exhibitor : {
         flexDirection: 'row',
         paddingVertical: 15,
-        paddingHorizontal: 15
+        paddingHorizontal: 15,
+    },
+    exhibitorPressed: {
+        opacity: 0.5
     },
     imageContainer : {
-        paddingRight: 10
+        paddingRight: 10,
     },
     itemContainer : {
-        flex: 1
+        flex: 1,
     },
     title : {
-        fontWeight: 'bold',
-        fontSize: 16
+        fontWeight: '500',
+        fontSize: 18
+    },
+    iconContainer : {
+        justifyContent: 'center',
+        alignItems: 'center',
     }
 })
+
+export default React.memo(ExhibitorItem)
